@@ -1,0 +1,36 @@
+<div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
+  <h1>Editing Book</h1>
+
+  <% if @book.errors.any? %>
+    <div id="error_explanation" class="alert-danger">
+      <h2><%= @book.errors.count %> errors prohibited this book from being saved:</h2>
+      <ul>
+        <% @book.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= form_with model:@book, local:true do |f| %>
+    <div class="form-group field">
+      <%= f.label :title %>
+      <%= f.text_field :title, class: "form-control" %>
+    </div>
+
+    <div class="form-group field">
+      <%= f.label :body %>
+      <%= f.text_area :body, class: "form-control" %>
+    </div>
+
+    <div class="form-group field">
+      <%= f.submit "Update Book", class: "btn btn-success" %>
+    </div>
+  <% end %>
+
+  <p class="link-p">
+    <%= link_to "Show", book_path(@book) %>
+    <span>|</span>
+    <%= link_to "Back", books_path %>
+  </p>
+</div>
